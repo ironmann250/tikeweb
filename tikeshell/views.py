@@ -17,12 +17,12 @@ def search(request):
     return render(request,'html/search.html')
 def createacc(request):
 	return render(request,'html/createacc.html')
-@login_required 
+#@login_required 
 def cart(request):
     return render(request,'html/cart.html') 
 def support(request):
     return render(request,'html/support.html')
-@login_required 
+#@login_required 
 def requestbuy(request):
     return render(request,'html/checkout.html')
 def sitemap(request):
