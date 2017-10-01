@@ -25,7 +25,7 @@ SECRET_KEY = 'k+w&p3v=s4@(7z95%vim=bae)0(#zlb*q-xr5wo+*iuo+sis06'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['tikeweb.herokuapp.com']
 
 
 # Application definition
