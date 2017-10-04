@@ -390,21 +390,10 @@ h2.m_3 {
 .span_1_of_3 {
   width:32.2%;
 }
-.span_1_of_5 {
-  width:19.32%;
-}
-.col_1_of_5 {
-  display: block;
-  float: left;
-  margin:0 0 0 1.2%;
-}
 .col_1_of_3 {
   display: block;
   float: left;
   margin:0 0 0 1.6%;
-}
-.col_1_of_5:hover .shop-holder{
-	border: 8px solid #f54d56;
 }
 .col_1_of_3:hover .shop-holder{
 	border: 8px solid #f54d56;
@@ -443,9 +432,6 @@ h2.m_3 {
 }
 .shop-holder .product-img {
 	position: relative;
-}
-.col_1_of_5:first-child {
-  margin-left: 0;
 }
 .col_1_of_3:first-child {
   margin-left: 0;
@@ -698,31 +684,62 @@ ul.list_1 li a{
   font-size: 0.85em;
   line-height: 1.8em;
 }
-ul.footer_social {
+.title{
+	font-size:1em;
+	text-align: center;
+	text-decoration: bold;
+	border-bottom: 2px solid gray;
+}
+.title1{
+	font-size:1em;
+	text-align: center;
+	text-decoration: bold;
+}
+.title2{
+	font-size:1.2em;
+	text-align: center;
+	text-decoration: bold;
+	border-bottom: 2px solid gray;
+}
+.fa {
+  padding: 10px;
+  font-size:20px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+
+}
+ul.footer_social ,span.fb{
   padding: 0;
   list-style: none;
   margin:0;
 }
-ul.footer_social li {
+ul.footer_social li ,span.fb{
   display: inline-block;
   margin-right: 10px;
 }
-ul.footer_social li a i {
+ul.footer_social li a i ,span.fb,span.tw,span.google,span.instagram{
   width: 25px;
   height: 25px;
   display: block;
   background: url(../images/img_sprite.png)no-repeat;
 }
-ul.footer_social li a i.fb {
+ul.footer_social li a i.fb, .fb{
 	background-position:-3px -13px;
 }
-ul.footer_social li a i.tw {
+ul.footer_social li a i.tw, .tw{
   	background-position:-26px -14px;
 }
-ul.footer_social li a i.google{
+ul.footer_social li a i.google, .google{
   	background-position:-55px -14px;
 }
-ul.footer_social li a i.instagram{
+ul.footer_social li a i.instagram, .instagram{
   	background-position:-84px -14px;
 }
 ul.footer_social li a i:hover{
@@ -1896,7 +1913,7 @@ a.b-home:hover{
 	line-height:1.8em;
 	margin-bottom:1em;
 }
-.column_2 input[type="text"], .column_2 textarea {
+.column_2 input[type="text"] {
   padding: 10px;
   font-size: 1em;
   margin: 10px 0;
@@ -2922,9 +2939,6 @@ h3.m_1 {
 }
 .shop-holder {
   border: 3px solid #ebebeb;
-}
-.col_1_of_5:hover .shop-holder{
-	border: 3px solid #f54d56;
 }
 .col_1_of_3:hover .shop-holder{
 	border: 3px solid #f54d56;

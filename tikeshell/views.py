@@ -4,7 +4,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 
-
 # Create your views here.
 
 def home(request):
@@ -17,6 +16,8 @@ def search(request):
     return render(request,'html/search.html')
 def createacc(request):
 	return render(request,'html/createacc.html')
+def view_event(request):
+	return render(request,'html/view_event.html')
 #@login_required 
 def cart(request):
     return render(request,'html/cart.html') 
@@ -27,5 +28,8 @@ def requestbuy(request):
     return render(request,'html/checkout.html')
 def sitemap(request):
 	return render(request,'html/sitemap.html')
+def music(request):
+	return render(request,'html/serve.html')
+
 
 

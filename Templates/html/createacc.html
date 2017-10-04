@@ -6,6 +6,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 {% extends 'html/base.html' %}
 {% load static %}
+{% load cache_bust %}
 {% block content %}
 <div class="content_top">
 <div class="single_top">
@@ -35,10 +36,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				     <div class="register-bottom-grid">
 						    <h3>LOGIN INFORMATION</h3>
 							 <div>
-								<span>Password<label>*</label></span>
-								<input type="text">
-							 </div>
-							  <div>
 								<span>Password<label>*</label></span>
 								<input type="text">
 							 </div>

@@ -1,0 +1,174 @@
+<!-- A design by TIKE ltd
+	Author: Munyakabera jean claude
+	Date: 3/10/2017
+	Description: page containing contents of one
+				 event, it is written in a way easy
+				 for web scrapping
+-->
+{% extends 'html/base.html' %}
+{% load static %}
+{% load cache_bust %}
+{% block content %}
+<div class="container">
+	<div id="rec_links" class="row" style="background:#EFEFEF;">
+		<a href="#">tike-front-page ></a>
+		<a href="#">category-front-page></a>
+		<a href="#">this-front-page</a>
+	</div>
+	<div class="spacer row" style="padding:2px;"></div>
+	<div id="main_details" class="row">
+		<div class="col-md-7">
+		<div class="row">
+				<div id="posters" class="col-sm-6 flexslider">
+						<ul class="slides">
+							<li>
+								<img class="img-responsive" src="{% static "images/17201445_1747704538579128_3008104441482311053_n.jpg" %}?{% cache_bust %}" alt="event logo">
+							</li>
+							<li>
+								<img class="img-responsive" src="{% static "images/15621649_1308377172567932_5202327550905640928_n.jpg" %}?{% cache_bust %}" alt="event logo">
+							</li>
+						</ul>
+				</div>
+			<div class="col-sm-6">
+			<div id="name">
+				<p><b>Name:</b> some name</p>
+			</div>
+			<div id="location">
+				<p><b>Location:</b> some location</p>
+			</div>
+			<div id="num_tickets">
+				<p><b>Available Tickets:</b> 42</p>
+			</div>
+			<div id="description">
+				<p><b>Description: </b>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</p>
+			</div><a class="fb"></a>
+		</div>
+		</div>
+		</div>
+		<div class="col-md-5">
+			<div id="category">
+				<p><b>Category: </b> <a href="#">Comedy</a></p>
+			</div>
+			<div id="sponsors">
+				<table class="table">
+					<p><b>Sponsored by: </b></p>
+						<tr>
+							<td>
+								<p><b><img class="img-responsive" src="{% static "images/19510366_1778932595457043_7527699437986703772_n.jpg" %}?{% cache_bust %}" alt="event logo"></b></p>
+							</td>
+							<td>
+								<p><b><img class="img-responsive" src="{% static "images/19510366_1778932595457043_7527699437986703772_n.jpg" %}?{% cache_bust %}" alt="event logo"></b></p>
+							</td>
+							<td>
+								<p><b><img class="img-responsive" src="{% static "images/19510366_1778932595457043_7527699437986703772_n.jpg" %}?{% cache_bust %}" alt="event logo"></b></p>
+							</td>
+							<td>
+								<p><b><img class="img-responsive" src="{% static "images/19510366_1778932595457043_7527699437986703772_n.jpg" %}?{% cache_bust %}" alt="event logo"></b></p>
+							</td>
+						</tr>
+				</table>
+			</div>
+			<div id="due_date">
+				<p><b>Due Date:</b> 3/10/2017</p>
+			</div>
+			<div id="fav_share">
+					<table class="table">
+						<p><b> Share On:</b></p>
+						<tr>
+							<td>
+								<p><b><i style="font-size:30px;padding: 5px;margin: 2px 2px;text-align: center;" class="material-icons">favorite_border</i></b></p>
+							</td>
+							<td>
+								<p><b><i class="fa fa-facebook"></i></b></p>
+							</td>
+							<td>
+								<p><b><i class="fa fa-twitter"></i></b></p>
+							</td>
+							<td>
+								<p><b><i class="fa fa-instagram"></i></b></p>
+							</td>
+						</tr>
+					</table>
+			</div>
+			<div id="buy">
+				<form >
+					
+					<table>
+						<tr>
+						<td>
+							<input class="btn" type="submit" value="View Ticket">
+						</td>
+						<td>
+							<select class="btn"><!-- maybe dropdown-->
+							<option value=1>Vip: 50000 RWF</option>
+							<option value=1>Second: 30000 RWF</option>
+							<option value=1>Normal: 10000 RWF</option>
+							</select> 
+						</td>
+							</tr>
+						</table>
+				</form>
+			</div>
+		</div>
+		</div>
+		<div class="clearfix"></div>
+		<div id="additional_info" class="row">
+			<div id="more_details" class="col-md-7 col-xs-12">
+				<div id="company" class="row" >
+					<div class="col-md-3">
+						<p class='title2'><b>Company/Organizer: </b></p>
+						<img class="img-responsive" src="{% static "images/19510366_1778932595457043_7527699437986703772_n.jpg" %}?{% cache_bust %}" alt="company logo">
+					</div>
+					<div class="col-md-9">
+						<p class="title">COM FACTORY</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</p>
+					</div>
+				</div>
+				<div id="venue" class="row" >
+					<div class="col-md-3">
+						<p class="title2"><b>Venue: </b></p>
+						<img class="img-responsive" src="{% static "images/17201445_1747704538579128_3008104441482311053_n.jpg" %}?{% cache_bust %}" alt="venue logo">
+					</div>
+					<div class="col-md-9">
+						<p class="title">SERENA HOTEL</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</p>
+					</div>
+				</div>
+			</div>
+			<div id="similar_events" class="col-md-5 col-xs-12">
+				<div class="title2"><p> Similar Events: </p></div>
+				<a href="#" class="row" >
+					<div class="col-md-3 col-xs-6">
+						<img class="img-responsive" src="{% static "images/19510366_1778932595457043_7527699437986703772_n.jpg" %}?{% cache_bust %}" alt="event logo">
+					</div>
+					<div class="col-md-9 col-xs-6">
+						<p class="title1">COM FACTORY</p>
+						<p>Lorem ipsum dolor sit amet</p>
+					</div>
+				</a>
+				<a href="#" class="row" >
+					<div class="col-md-3 col-xs-6">
+						<img class="img-responsive" src="{% static "images/19510366_1778932595457043_7527699437986703772_n.jpg" %}?{% cache_bust %}" alt="event logo">
+					</div>
+					<div class="col-md-9 col-xs-6">
+						<p class="title1">COM FACTORY</p>
+						<p>Lorem ipsum dolor sit amet</p>
+					</div>
+				</a>
+				<a href="#" class="row" >
+					<div class="col-md-3 col-xs-6">
+						<img class="img-responsive" src="{% static "images/19510366_1778932595457043_7527699437986703772_n.jpg" %}?{% cache_bust %}" alt="event logo">
+					</div>
+					<div class="col-md-9 col-xs-6">
+						<p class="title1">COM FACTORY</p>
+						<p>Lorem ipsum dolor sit amet</p>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div> 
+{% endblock %}

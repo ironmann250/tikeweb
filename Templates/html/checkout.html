@@ -6,6 +6,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 {% extends 'html/base.html' %}
 {% load static %}
+{% load cache_bust %}
 {% block content %}
 <div class="container">
 	<div class="check">	 
@@ -23,7 +24,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				 <div class="close1"> </div>
 				 <div class="cart-sec simpleCart_shelfItem">
 						<div class="cart-item cyc">
-							 <img src="{% static "images/pic1.jpg"%}" class="img-responsive" alt=""/>
+							 <img src="{% static "images/pic1.jpg" %}?{% cache_bust %}" class="img-responsive" alt=""/>
 						</div>
 					   <div class="cart-item-info">
 						<h3><a href="#">Mountain Hopper(XS R034)</a><span>Model No: 3578</span></h3>
@@ -53,7 +54,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				 <div class="close2"> </div>
 				  <div class="cart-sec simpleCart_shelfItem">
 						<div class="cart-item cyc">
-							 <img src="{% static "images/pic2.jpg"%}" class="img-responsive" alt=""/>
+							 <img src="{% static "images/pic2.jpg" %}?{% cache_bust %}" class="img-responsive" alt=""/>
 						</div>
 					   <div class="cart-item-info">
 						<h3><a href="#">Mountain Hopper(XS R034)</a><span>Model No: 3578</span></h3>

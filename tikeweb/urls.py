@@ -19,7 +19,7 @@ from django.contrib.auth import views as auth_views
 from tikeshell import views as tikeshell_views
 from django.conf import settings
 from django.conf.urls.static import static
-
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^login/$',auth_views.login, {'template_name': 'html/login.html'}),
@@ -33,5 +33,7 @@ urlpatterns = [
     url(r'^createacc/',tikeshell_views.createacc),
     url(r'^sitemap/',tikeshell_views.sitemap),
     url(r'^search/',tikeshell_views.search),
+    url(r'^view_event/',tikeshell_views.view_event),
 ]
-urlpatterns=urlpatterns+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+#urlpatterns=urlpatterns+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += staticfiles_urlpatterns()

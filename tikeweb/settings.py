@@ -25,7 +25,7 @@ SECRET_KEY = 'k+w&p3v=s4@(7z95%vim=bae)0(#zlb*q-xr5wo+*iuo+sis06'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['tikeweb.herokuapp.com']
+ALLOWED_HOSTS = []#['192.168.43.208','0.0.0.0','localhost','127.0.0.1']
 
 
 # Application definition
@@ -117,13 +117,16 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR,'static')
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+
+]
+STATIC_ROOT = os.path.join(BASE_DIR,'static_root')
 STATIC_URL = '/static/'
-'''
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
-'''
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 LOGIN_REDIRECT_URL = '/home/'
 LOGIN_URL = '/login/'
