@@ -24,6 +24,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="text/javascript" src="{% static "js/jquery-1.11.1.min.js" %}"></script>
 <link href='http://fonts.googleapis.com/css?family=Lato:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
 <script src="{% static "js/jquery.flexslider-min.js" %}?{% cache_bust %}"> </script>
+<script>
+// Can also be used with $(document).ready()
+$(window).load(function() {
+  $('.flexslider').flexslider({
+    animation: "slide",
+    touch:true,
+    slideshowSpeed:5000,
+    smoothHeight:false,
+    animationLoop:true,
+    slideshow:true,
+    pauseOnHover:true,
+  });
+  $('.lots').flexslider({
+        animation: "slide",
+        animationLoop: true,
+        itemMargin: 0,
+        itemWidth:60,
+        minItems: 4, // use function to pull in initial value
+        maxItems: 4, // use function to pull in initial value
+        touch:true,
+        controlNav: false,
+        pauseOnHover:true,
+});
+});
+</script>
 <!-- start menu -->
 <link href="{% static "css/megamenu.css" %}" rel="stylesheet" type="text/css" media="all" />
 <link href="{% static "css/style.css" %}" rel='stylesheet' type='text/css'/>
@@ -121,31 +146,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 </div>
 </body>
-<script>
-// Can also be used with $(document).ready()
-$(window).load(function() {
-  $('.flexslider').flexslider({
-    animation: "slide",
-    touch:true,
-    slideshowSpeed:5000,
-    smoothHeight:false,
-    animationLoop:true,
-    slideshow:true,
-    pauseOnHover:true,
-  });
-  $('.lots').flexslider({
-        animation: "slide",
-        animationLoop: true,
-        itemMargin: 0,
-        itemWidth:60,
-        minItems: 4, // use function to pull in initial value
-        maxItems: 4, // use function to pull in initial value
-        touch:true,
-        controlNav: false,
-        pauseOnHover:true,
-});
-});
-</script>
+
 </html>		  
     
     
