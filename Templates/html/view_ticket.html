@@ -1,0 +1,294 @@
+<!-- A design by TIKE ltd
+	Autdor: Munyakabera jean claude
+	Date: 5/10/2017
+	Description: page where user select which ticket tdey 			   wish for and some otder info and 					 redirected to checkout, make it hard for 			   web scrapping, for security issues
+-->
+{% extends 'html/base.html' %}
+{% load cache_bust %}
+{% load static %}
+{% block content %}
+<div class="container"> <!-- a fluid container for tde map tdin
+	gie [?] judge whetder to use fluid or not -->
+<script>
+	$(window).load(function() {
+	var choice=parseInt($('.types').val());
+	var cost=0;
+	if (choice == 1){
+	cost=30000;
+	}else if(choice==2){
+	cost=15000;
+	}else{
+	cost=5000;
+	}
+	var qnty=parseInt($('.num_tickets').val());
+	$('.price').text((cost*qnty));
+	$('.hall_map td div.active').removeClass('active');
+	if (choice == 1){
+	$('#l_vip').addClass('active');
+	$('#r_vip').addClass('active');
+	}else if(choice==2){
+	$('#s_class').addClass('active');
+	}else{
+	$('#n_sits').addClass('active');
+	}
+});
+	$(window).load(function() {
+	$('.num_tickets').keyup(function(){
+	var choice=parseInt($('.types').val());
+	var cost=0;
+	if (choice == 1){
+	cost=30000;
+	}else if(choice==2){
+	cost=15000;
+	}else{
+	cost=5000;
+	}
+	var qnty=parseInt($('.num_tickets').val());
+	$('.price').text((cost*qnty));
+	
+});
+});
+	$(window).load(function() {
+	$('.num_tickets').click(function(){
+	var choice=parseInt($('.types').val());
+	var cost=0;
+	if (choice == 1){
+	cost=30000;
+	}else if(choice==2){
+	cost=15000;
+	}else{
+	cost=5000;
+	}
+	var qnty=parseInt($('.num_tickets').val());
+	$('.price').text((cost*qnty));
+	
+});
+});
+
+	$(document).ready(function() {
+	$('.types').change(function(){
+	var choice=parseInt($(this).val());
+	var cost=0;
+	if (choice == 1){
+	cost=30000;
+	}else if(choice==2){
+	cost=15000;
+	}else{
+	cost=5000;
+	}
+	var qnty=parseInt($('.num_tickets').val());
+	$('.price').text((cost*qnty));
+	$('.hall_map td div.active').removeClass('active');
+	if (choice == 1){
+	$('#l_vip').addClass('active');
+	$('#r_vip').addClass('active');
+	}else if(choice==2){
+	$('#s_class').addClass('active');
+	}else{
+	$('#n_sits').addClass('active');
+	}
+});
+});
+</script>
+	<div class="row">
+		<div class="col-md-7 light-gray"> <!-- map made of table -->
+			<table class="table hall_map container-fluid" style="text-align:center;
+	text-decoration: bold;" >
+				<tr>
+					<td class="row">
+						<div id="podium" class="nice-black block col-xs-4 col-xs-offset-4" >
+							STAGE
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="row">
+						<div id="l_vip" class="nice-black block col-xs-5" >
+							LEFT VIP
+						</div>
+						<div id="r_vip" class="nice-black block col-xs-5 col-xs-offset-2" >
+							RIGHT VIP
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div id="s_class" class="block nice-black" >
+							SECOND CLASS
+						</div>
+						
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div id="n_sits" class="block nice-black" >
+							NORMAL SITS
+						</div>
+						
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p class="title border_up_down" style="font-size:1em;">Hall Map 
+						</p>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<form class="col-md-5" style="text-align:center;">
+			<div class="border_up_down" style="text-align:left;">
+				<p class="" style="padding:2px;"> Category: <select name="types" class="pin types">
+					<option id="vip" value="3">Normal Sits: 5000 rwf</option>
+					<option id="scnd" value="2">Second class: 15000 rwf</option>
+					<option id="nml" value="1">VIP sits 30000 rwf</option>
+				</select><span style="font-size:1em;" class="material-icons">info</span>
+				</p>
+			
+				<p class="">`Amount  :  <input class="pin num_tickets"  type="number" name="num_tickets" value=1> of <span class="flat_block"> 500</span> <span style="font-size:1em;" class="material-icons">info</span>
+				</p>
+			</div>
+			<div class="border_up_down">
+				<p class="">Delivery Way:
+				</p>
+				<div class="radio">
+					<label>
+					<input type="radio" name="delivery" value="yes_web" checked>trough your account&mdash; we will send an sms to your phone or an email<span style="font-size:1em;" class="material-icons">info</span>
+					</label>
+				</div>
+				<div class="radio">
+				<label>
+				<input type="radio" name="delivery" value="yes_onsite" disabled>onsite pickup&mdash; we will send a code and you show it at the event entrance<span style="font-size:1em;" class="material-icons">info</span>
+				</label>
+				</div>
+			</div>
+			<div class="border_up_down">
+				<p class="">Summary:</p>
+				<p class="">Price: <span class="price" >0 </span><span class="flat_block"> RWF </span><input type="submit" value="Order" class="btn"><span style="font-size:1em;" class="material-icons">info</span>
+				</p>
+				
+			</div>
+		</form>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-xs-12">
+		<div class="flexslider">
+			<ul class="slides">
+				<li>
+					<div class="col-md-6 col-xs-6">
+						<img class="img-responsive" src="{% static "images/19510366_1778932595457043_7527699437986703772_n.jpg" %}?{% cache_bust %}" alt="event logo">
+					</div>
+					<div class="col-md-6 col-xs-6">
+						<p class="title1">event name</p>
+						<div>
+						<p class=""><span>Category: </span> event name</p>
+						<p class=""><span>Due Date: </span> event name</p>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="col-md-6 col-xs-6">
+						<img class="img-responsive" src="{% static "images/19510366_1778932595457043_7527699437986703772_n.jpg" %}?{% cache_bust %}" alt="event logo">
+					</div>
+					<div class="col-md-6 col-xs-6">
+						<p class="title1">venue name</p>
+						<div>
+						<p class=""><span>Location: </span> event name</p>
+						<p class=""><span>Capacity: </span> event name</p>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+		<p href="#" class="title"> Similar Events </p>
+		<div class="col-md-3 col-xs-6">
+			<a href="#" class="row" >
+					<div class="col-md-5 col-xs-12">
+						<img class="img-responsive" src="{% static "images/19510366_1778932595457043_7527699437986703772_n.jpg" %}?{% cache_bust %}" alt="event logo">
+					</div>
+					<div class="col-md-7 col-xs-12">
+						<p class="title1">COM FACTORY</p>
+						<p>Lorem ipsum dolor sit amet</p>
+					</div>
+			</a>
+			<a href="#" class="row" >
+					<div class="col-md-5 col-xs-12">
+						<img class="img-responsive" src="{% static "images/19510366_1778932595457043_7527699437986703772_n.jpg" %}?{% cache_bust %}" alt="event logo">
+					</div>
+					<div class="col-md-7 col-xs-12">
+						<p class="title1">COM FACTORY</p>
+						<p>Lorem ipsum dolor sit amet</p>
+					</div>
+			</a>
+			<a href="#" class="row" >
+					<div class="col-md-5 col-xs-12">
+						<img class="img-responsive" src="{% static "images/19510366_1778932595457043_7527699437986703772_n.jpg" %}?{% cache_bust %}" alt="event logo">
+					</div>
+					<div class="col-md-7 col-xs-12">
+						<p class="title1">COM FACTORY</p>
+						<p>Lorem ipsum dolor sit amet</p>
+					</div>
+			</a>
+		</div>
+		<div class="col-md-3 col-xs-6">
+			<a href="#" class="row" >
+					<div class="col-md-5 col-xs-12">
+						<img class="img-responsive" src="{% static "images/19510366_1778932595457043_7527699437986703772_n.jpg" %}?{% cache_bust %}" alt="event logo">
+					</div>
+					<div class="col-md-7 col-xs-12">
+						<p class="title1">COM FACTORY</p>
+						<p>Lorem ipsum dolor sit amet</p>
+					</div>
+			</a>
+			<a href="#" class="row" >
+					<div class="col-md-5 col-xs-12">
+						<img class="img-responsive" src="{% static "images/19510366_1778932595457043_7527699437986703772_n.jpg" %}?{% cache_bust %}" alt="event logo">
+					</div>
+					<div class="col-md-7 col-xs-12">
+						<p class="title1">COM FACTORY</p>
+						<p>Lorem ipsum dolor sit amet</p>
+					</div>
+			</a>
+			<div class="spacer row" style="padding:2px;"></div>
+			<a href="#" class="row" >
+					<div class="col-md-5 col-xs-12">
+						<img class="img-responsive" src="{% static "images/19510366_1778932595457043_7527699437986703772_n.jpg" %}?{% cache_bust %}" alt="event logo">
+					</div>
+					<div class="col-md-7 col-xs-12">
+						<p class="title1">COM FACTORY</p>
+						<p>Lorem ipsum dolor sit amet</p>
+					</div>
+			</a>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<p class="title">Reviews</p>
+			<ul>
+				<li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</p>
+				<p style="text-align:center">- from Igihe.com</p>
+				</li>	
+				<li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</p>
+				<p style="text-align:center">- from Igihe.com</p>
+				</li>
+				<li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</p>
+				<p style="text-align:center;">- from Igihe.com</p>
+				</li>
+			</ul>			
+		</div>
+		<div class="col-md-6">
+			<p class="title">Policy</p>
+			<ul style="list-style-type:disc">
+				<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</li>
+				<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</li>
+				<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</li>
+				<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</li>
+				<li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

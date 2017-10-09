@@ -3,12 +3,13 @@
 	Date: 3/10/2017
 	Description: page containing contents of one
 				 event, it is written in a way easy
-				 for web scrapping
+				 for web scrapping for info gathering
 -->
 {% extends 'html/base.html' %}
 {% load static %}
 {% load cache_bust %}
 {% block content %}
+<!---replace sponsors from table to 4 items slideshow -->
 <div class="container">
 	<div id="rec_links" class="row" style="background:#EFEFEF;">
 		<a href="#">tike-front-page ></a>
@@ -96,10 +97,10 @@
 					<table>
 						<tr>
 						<td>
-							<input class="btn" type="submit" value="View Ticket">
+							<input class="pin" type="submit" value="View Ticket">
 						</td>
 						<td>
-							<select class="btn"><!-- maybe dropdown-->
+							<select class="pin"><!-- maybe dropdown-->
 							<option value=1>Vip: 50000 RWF</option>
 							<option value=1>Second: 30000 RWF</option>
 							<option value=1>Normal: 10000 RWF</option>
