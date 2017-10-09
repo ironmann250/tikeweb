@@ -34,6 +34,9 @@ urlpatterns = [
     url(r'^sitemap/',tikeshell_views.sitemap),
     url(r'^search/',tikeshell_views.search),
     url(r'^view_event/',tikeshell_views.view_event),
+    url(r'^view_ticket/',tikeshell_views.view_ticket),
+    url(r'^dashboard/',tikeshell_views.dashboard),
+    url(r'^music/',tikeshell_views.music),
 ]
 #urlpatterns=urlpatterns+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += staticfiles_urlpatterns()
