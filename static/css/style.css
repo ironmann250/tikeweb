@@ -509,6 +509,14 @@ h2.m_3 {
 .content_bottom-grid{
 	background: #f5f5f5;
 }
+.date-main{
+  position: ;
+  text-align: center;
+  background: #4c4c4c;
+  padding: 10px;
+  color: #fff;
+  text-transform: uppercase;
+}
 .date-comments, .data-comments{
   position: absolute;
   top: -70px;
@@ -521,13 +529,29 @@ h2.m_3 {
   min-height: 170px;
   text-transform: uppercase;
 }
-.date-comments .date span.word1 {
-  font-size: 36px;
+.caption{
+	text-align: center;
+
+	color: #fff;
+	background: #4c4c4c;
+}
+.centered{
+	vertical-align: middle;
+}
+.date-comments .date span.word1,span.word1 {
+  font-size: 30px;
   color:#f54d56;
   line-height: 30px;
 }
-.date-comments .date span.word2 {
+.line_space{
+	 border-bottom: 1px solid white;
+}
+.date-comments .date span.word2,span.word2 {
   font-size: 16px;
+    display: block;
+}
+span.word3 {
+  font-size: 8px;
     display: block;
 }
 .shop-holder1{
@@ -684,11 +708,45 @@ ul.list_1 li a{
   font-size: 0.85em;
   line-height: 1.8em;
 }
+.select {
+	margin: 0 0 16px;
+	line-height: 1.8em;
+}
+
+.hall_map .active{
+	background-color: orange;
+}
+.pin{
+display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.t_right{
+	padding-left:10px;
+	position: right;
+}
+.t_left{
+	text-align:left;
+}
 .title{
 	font-size:1em;
 	text-align: center;
 	text-decoration: bold;
 	border-bottom: 2px solid gray;
+}
+.border_up_down{
+	border-top: 1px solid ;
+	border-bottom: 1px solid;
+	padding:4px;
 }
 .title1{
 	font-size:1em;
@@ -2154,6 +2212,17 @@ p.cart {
 .register-but{
 	margin-top:1em;
 }
+.square{
+	padding:10px 20px 10px 5px;
+	border: 1px solid black;
+}
+.block{
+	padding: 0.5em 0.5em 0.5em 0.5em;
+}
+.card{
+	padding-bottom:2.1em;
+
+}
 .register-but form input[type="submit"] {
 	background:#df1f26;
 	color: #FFF;
@@ -2274,6 +2343,20 @@ a.order {
   text-align: center;
   margin:3em 0;
 }
+.btn_order{
+  background:#333;
+  font-size: 1em;
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  font-weight: 600;
+  text-align: center;
+  margin:3em 0;
+}
+.btn_order:hover{
+	background:orange;
+}
+
 a.order:hover{
 	background:orange;
 }
@@ -3013,9 +3096,6 @@ h3.m_2 {
 .map iframe {
   min-height:150px;
 }
-.map {
-  margin-bottom: 2em;
-}
 .contact_left h1 {
   font-size: 1.2em;
 } 
@@ -3045,3 +3125,56 @@ a.b-home {
 }
 }
 
+.divisor{
+    padding-top: 10px;
+}
+.yellow {
+    background-color: #FFF056;
+    color: black;
+}
+.red{
+    background-color:#C63D0F;
+    color:black;
+}
+.light-gray{
+    background-color:#DFE2DB;
+    color:black;
+}
+.red-black{
+    background-color:#3B3738;
+    color:white;
+}
+.rose{
+    background-color:#FDF3E7;
+    color:black;
+}
+.light-green-gray{
+    background-color:#7E8F7C;
+    color:black;
+}
+
+
+.light-green{
+    background-color:#A8CD1B;
+    color:black;
+}
+.lighter-green{
+    background-color:#CBE32D;
+    color:black;
+}
+.lighter-yellow{
+    background-color:#F3FAB6;
+    color:black;
+}
+.sky-blue{
+    background-color:#67BCDB;
+    color:black;
+}
+.nice-black{
+    background-color:#2B2B2B;
+    color:white;
+}
+.brown{
+    background-color:#5E412F;
+    color:black;
+}
