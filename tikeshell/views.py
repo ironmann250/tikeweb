@@ -26,6 +26,10 @@ def support(request):
 #@login_required 
 def requestbuy(request):
     return render(request,'html/checkout.html')
+def dashboard(request):
+	return render(request,'html/dashboard.html')
+def view_ticket(request):
+	return render(request,'html/view_ticket.html')
 def sitemap(request):
 	return render(request,'html/sitemap.html')
 def music(request):
