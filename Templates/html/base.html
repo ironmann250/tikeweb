@@ -1,5 +1,8 @@
 ﻿{% load static %}
 {% load cache_bust %}
+<!---when online remove cache_bust -->
+<!-- load secondaey js and css after body load first(bootstrap & jquery) -->
+<!-- load any major js,css,fonts from an cdn(jquery,bootstrap,font-awesome,material-icons)-->
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -9,49 +12,24 @@
 <meta name="keywords" content="Buy_shop Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-
+<link href="{% static "css/material-icons.css" %}" rel='stylesheet' type='text/css'/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="{% static "css/bootstrap.css" %}" rel='stylesheet' type='text/css'  />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!-- Custom Theme files -->
 <link href="{% static "css/flexslider.css" %}" rel='stylesheet' type='text/css' />
 <!-- plugin for the pic sliders -->
 <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+
 <!-- Custom Theme files -->
 <!--webfont-->
-<script type="text/javascript" src="{% static "js/jquery-1.11.1.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/jquery.min.js" %}"></script>
 <link href='http://fonts.googleapis.com/css?family=Lato:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
 <script src="{% static "js/jquery.flexslider-min.js" %}?{% cache_bust %}"> </script>
-<script>
-// Can also be used with $(document).ready()
-$(window).load(function() {
-  $('.flexslider').flexslider({
-    animation: "slide",
-    touch:true,
-    slideshowSpeed:5000,
-    smoothHeight:false,
-    animationLoop:true,
-    slideshow:true,
-    pauseOnHover:true,
-  });
-  $('.lots').flexslider({
-        animation: "slide",
-        animationLoop: true,
-        itemMargin: 0,
-        itemWidth:60,
-        minItems: 4, // use function to pull in initial value
-        maxItems: 4, // use function to pull in initial value
-        touch:true,
-        controlNav: false,
-        pauseOnHover:true,
-});
-});
-</script>
 <!-- start menu -->
 <link href="{% static "css/megamenu.css" %}" rel="stylesheet" type="text/css" media="all" />
-<link href="{% static "css/style.css" %}" rel='stylesheet' type='text/css'/>
-
+<link href="{% static "css/style.css"%}?{% cache_bust %}" rel='stylesheet' type='text/css'/>
 <script type="text/javascript" src="{% static "js/megamenu.js" %}?{% cache_bust %}"></script>
 
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
@@ -146,7 +124,47 @@ $(window).load(function() {
 	</div>
 </div>
 </body>
+<script type="text/javascript">
+    $(function(){
+      SyntaxHighlighter.all();
+    });
+    // store the slider in a local variable
+      var $window = $(window),
+          flexslider = { vars:{} };
+    function getGridSize() {
+        return (window.innerWidth < 400) ? 2 :
+               (window.innerWidth < 9000) ? 3 : 4;
+      }
 
+    $(window).load(function(){
+      $('.flexslider').flexslider({
+    animation: "slide",
+    touch:true,
+    slideshowSpeed:5000,
+    smoothHeight:false,
+    animationLoop:true,
+    slideshow:true,
+    pauseOnHover:true,
+  });
+      $('.lots').flexslider({
+        animation: "slide",
+        touch:true,
+    	slideshowSpeed:5000,
+    	smoothHeight:false,
+    	animationLoop:true,
+    	slideshow:true,
+    	pauseOnHover:true,
+        minItems: getGridSize(), // use function to pull in initial value
+        maxItems: getGridSize(), // use function to pull in
+      });
+      $window.resize(function() {
+        var gridSize = getGridSize();
+
+        flexslider.vars.minItems = gridSize;
+        flexslider.vars.maxItems = gridSize;
+      });
+    });
+  </script>
 </html>		  
     
     

@@ -1,0 +1,105 @@
+{% extends 'html/base.html' %}
+{% load static %}
+{% load cache_bust %}
+{% block content %}
+<div class="container">
+	<div id="main_details" class="row">
+		<div class="col-md-7">
+		<div class="row">
+				<div id="posters" class="col-sm-6 flexslider">
+						<ul class="slides">
+							<li>
+								<img class="img-responsive" src="{% static "images/17201445_1747704538579128_3008104441482311053_n.jpg" %}?{% cache_bust %}" alt="event logo">
+							</li>
+							<li>
+								<img class="img-responsive" src="{% static "images/15621649_1308377172567932_5202327550905640928_n.jpg" %}?{% cache_bust %}" alt="event logo">
+							</li>
+						</ul>
+				</div>
+			<div class="col-sm-6">
+			<div id="name">
+				<p><b>Name:</b> some name</p>
+			</div>
+			<div id="location">
+				<p><b>Location:</b> some location</p>
+			</div>
+			<div id="num_tickets">
+				<p><b>Available Tickets:</b> 42</p>
+			</div>
+			<div id="description">
+				<p><b>Description: </b>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</p>
+			</div>
+			<div id="category">
+				<p><b>Category: </b> <a href="#">Comedy</a></p>
+			</div>
+			<div id="due_date">
+				<p><b>Due Date:</b> 3/10/2017</p>
+			</div>
+			<div id="fav_share">
+					<table class="table">
+						<p><b> Stats:</b></p>
+						<tr>
+							<td>
+								<p><b><i style="font-size:30px;text-align:center;" class="material-icons">favorite_border</i></b>
+									<p style="font-size:20px;">500</p></p>
+							</td>
+							<td>
+								<p><b><i style="font-size:30px;text-align:center;" class="material-icons">people</i></b>
+									<p style="font-size:20px;">5000</p></p>
+							</td>
+							<td>
+								<p><b><i style="font-size:30px;text-align:center;" class="material-icons">comments</i></b>
+									<p style="font-size:20px;">50</p></p>
+							</td>
+							<td>
+								<p><b><i style="font-size:30px;text-align:center;" class="material-icons">star</i></b>
+									<p style="font-size:20px;">6/10</p></p>
+							</td>
+						</tr>
+					</table>
+			</div>
+		</div>
+		</div>
+		</div>
+		<div class="col-md-5">
+			<p><b>Issued To:</b> Munyakabera Jean Claude</p>
+			<p><b>Sent To:</b> +250788304050</p>
+			<p><b>Used:</b> 1 of 10 tickets used</p>
+			<p><b>Sits:</b> Normal Sits</p>
+			<p><b>Amount:</b> 10 tickets</p>
+			<p><b>Price:</b> 50000 RWF</p>
+			<p><b>Bought On:</b> 3/10/2017</p>
+			<div id="sponsors">
+				<table class="table">
+					<p><b>ticket codes: </b></p>
+						<div class="row">
+							<div class="col-md-5 col-xs-6 border_up_down">
+								<a href="{% static "images/qrcode.png" %}?{% cache_bust %}" target="_blank_" style="text-align:center;">Qr code(click to enlarge)</p><p class="centered"><img class="img-responsive" src="{% static "images/qrcode.png" %}?{% cache_bust %}" alt="event logo"></a>
+							</div>
+							
+							<div class="col-md-6 col-md-offset-1 col-xs-6 border_up_down" >
+								<p style="text-align:center;">text code </p>
+								<div class="date-main">
+						<div class="time">
+							<span class="date">
+							<span class="word1-1">8y</span> 
+							<span class="word3-1">-</span>
+							<span class="word1-1">xv</span> 
+							<span class="word3-1">-</span>
+							<span class="word1-1">6u</span> 
+							</span>
+						</div>					
+						<div class="line_space"></div>	 
+						<div class="comments">
+						<span class="word2">8yxv6u</span>
+						</div>
+					 </div>
+							</div>
+						</div>
+				</table>
+			</div>
+			
+		</div>
+		</div>
+</div>
+{% endblock %}
