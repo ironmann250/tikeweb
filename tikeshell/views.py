@@ -30,6 +30,8 @@ def dashboard(request):
 	return render(request,'html/dashboard.html')
 def view_ticket(request):
 	return render(request,'html/view_ticket.html')
+def ticket(request):
+    return render(request,'html/ticket.html')
 def sitemap(request):
 	return render(request,'html/sitemap.html')
 def music(request):
