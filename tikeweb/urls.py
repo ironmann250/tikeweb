@@ -32,12 +32,12 @@ urlpatterns = [
     url(r'^requestbuy/',tikeshell_views.requestbuy),
     url(r'^createacc/',tikeshell_views.createacc),
     url(r'^sitemap/',tikeshell_views.sitemap),
-    url(r'^search/',tikeshell_views.search),
-    url(r'^view_event/',tikeshell_views.view_event),
-    url(r'^view_ticket/',tikeshell_views.view_ticket),
-    url(r'^dashboard/',tikeshell_views.dashboard),
-    url(r'^ticket/',tikeshell_views.ticket),
-    url(r'^music/',tikeshell_views.music),
+    url(r'^search/(?P<q>.*)',tikeshell_views.search),
+    url(r'^view_event/(?P<event_id>\d+)',tikeshell_views.view_event),
+    url(r'^view_ticket/(?P<event_id>\d+)',tikeshell_views.view_ticket),
+    url(r'^dashboard/(?P<user>\d+)',tikeshell_views.dashboard),
+    url(r'^ticket/(?P<ticket_pin>.*)',tikeshell_views.ticket),
+    url(r'^get_qrcode/(?P<text>.*)',tikeshell_views.render_qrcode),#security vurnelability here this can act as truthness function[explanation later]
 ]
 #urlpatterns=urlpatterns+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += staticfiles_urlpatterns()

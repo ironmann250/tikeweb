@@ -138,9 +138,9 @@
 		<form action="/requestbuy" class="col-md-5" style="text-align:center;">
 			<div class="border_up_down" style="text-align:left;">
 				<p class="" style="padding:2px;"> Category: <select name="types" class="pin types">
-					<option id="vip" value="3">Normal Sits: 5000 rwf</option>
-					<option id="scnd" value="2">Second class: 15000 rwf</option>
-					<option id="nml" value="1">VIP sits 30000 rwf</option>
+					{% for ticket_type in ticket_types %}
+						<option id='{{ticket_type.tike_type}}' value={{ticket_type.id}}>{{ticket_type.tike_type}}: {{ticket_type.amount}}</option>
+					{% endfor %}
 				</select><span style="font-size:1em;" class="material-icons">info</span>
 				</p>
 			
@@ -180,10 +180,10 @@
 						<img class="img-responsive" src="{% static "images/19510366_1778932595457043_7527699437986703772_n.jpg" %}?{% cache_bust %}" alt="event logo">
 					</div>
 					<div class="col-md-6 col-xs-6">
-						<p class="title1">event name</p>
+						<p class="title1">{{event.title}} </p>
 						<div>
-						<p class=""><span>Category: </span> event name</p>
-						<p class=""><span>Due Date: </span> event name</p>
+						<p class=""><span>Category: </span> {{event.category.category_title}}</p>
+						<p class=""><span>Due Date: </span> {{event.date}}</p>
 						</div>
 					</div>
 				</li>
@@ -192,10 +192,10 @@
 						<img class="img-responsive" src="{% static "images/19510366_1778932595457043_7527699437986703772_n.jpg" %}?{% cache_bust %}" alt="event logo">
 					</div>
 					<div class="col-md-6 col-xs-6">
-						<p class="title1">venue name</p>
+						<p class="title1"> {{event.venue.name}} </p>
 						<div>
-						<p class=""><span>Location: </span> event name</p>
-						<p class=""><span>Capacity: </span> event name</p>
+						<p class=""><span>Location: </span> {{event.venue.location}}</p>
+						<p class=""><span>Capacity: </span> {{event.venue.capacity}}</p>
 						</div>
 					</div>
 				</li>
@@ -203,34 +203,19 @@
 		</div>
 	</div>
 		<p href="#" class="title"> Similar Events </p>
+		<!-- should weak the loop to split into two columns later -->
 		<div class="col-md-3 col-xs-6">
+			{% for similar_event in similar_events %}
 			<a href="#" class="row" >
 					<div class="col-md-5 col-xs-12">
 						<img class="img-responsive" src="{% static "images/19510366_1778932595457043_7527699437986703772_n.jpg" %}?{% cache_bust %}" alt="event logo">
 					</div>
 					<div class="col-md-7 col-xs-12">
-						<p class="title1">COM FACTORY</p>
-						<p>Lorem ipsum dolor sit amet</p>
+						<p class="title1">{{similar_event.title}}</p>
+						<p>at {{similar_event.venue.name}} on {{similar_event.date}}</p>
 					</div>
 			</a>
-			<a href="#" class="row" >
-					<div class="col-md-5 col-xs-12">
-						<img class="img-responsive" src="{% static "images/19510366_1778932595457043_7527699437986703772_n.jpg" %}?{% cache_bust %}" alt="event logo">
-					</div>
-					<div class="col-md-7 col-xs-12">
-						<p class="title1">COM FACTORY</p>
-						<p>Lorem ipsum dolor sit amet</p>
-					</div>
-			</a>
-			<a href="#" class="row" >
-					<div class="col-md-5 col-xs-12">
-						<img class="img-responsive" src="{% static "images/19510366_1778932595457043_7527699437986703772_n.jpg" %}?{% cache_bust %}" alt="event logo">
-					</div>
-					<div class="col-md-7 col-xs-12">
-						<p class="title1">COM FACTORY</p>
-						<p>Lorem ipsum dolor sit amet</p>
-					</div>
-			</a>
+			{% endfor %}
 		</div>
 		<div class="col-md-3 col-xs-6">
 			<a href="#" class="row" >
@@ -267,15 +252,11 @@
 		<div class="col-md-6">
 			<p class="title">Reviews</p>
 			<ul>
-				<li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</p>
-				<p style="text-align:center">- from Igihe.com</p>
+				{% for review in reviews %}
+				<li><p>{{review.text}}</p>
+				<a href="http://{{review.url}}" style="text-align:center">- from {{review.source}}</a>
 				</li>	
-				<li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</p>
-				<p style="text-align:center">- from Igihe.com</p>
-				</li>
-				<li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</p>
-				<p style="text-align:center;">- from Igihe.com</p>
-				</li>
+				{% endfor %}
 			</ul>			
 		</div>
 		<div class="col-md-6">

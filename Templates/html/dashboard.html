@@ -94,6 +94,7 @@
 		<h3 class="panel-title"> Your Basket(tickets that you did not pay for yet)</h3>
 	</div>
 	<div class="row panel-body">
+		{%for ticket in basket%}
 		<a href="/requestbuy" class="col-md-6">
 			<div class="row border_up_down">
 				<div class="col-xs-3">
@@ -147,57 +148,7 @@
 			</div>
 
 		</a>
-	<a href="/requestbuy" class="col-md-6">
-			<div class="row border_up_down">
-				<div class="col-xs-3">
-					<div class="date-main">
-						<div class="time">
-							<span class="date">
-							<span class="word2">Jan</span> 
-							<span class="word1">14</span> 
-							<span class="word2">2017</span>
-							</span>
-						</div>					
-						<div class="line_space"></div>	 
-						<div class="comments">
-						<span><span class="word1">0</span>
-						<span class="word3">days left</span></span>
-						</div>
-					 </div>
-				</div>
-				<div class="col-xs-6">
-					<p><b>Event: </b>Kigali Knights</p>
-					<p><b>Venue: </b>Serena Hotel</p>
-					<p><b>tickets: </b>100 of 300 remaining</p>
-					<p><b>date: </b>10/12/2017</p>
-					<table class="table">
-						<p><b> Stats:</b></p>
-						<tr>
-							<td>
-								<p><b><i style="font-size:16px;text-align:center;" class="material-icons">favorite</i></b>
-									<p style="font-size:13px;">500</p></p>
-							</td>
-							<td>
-								<p><b><i style="font-size:16px;text-align:center;" class="material-icons">people</i></b>
-									<p style="font-size:13px;">5000</p></p>
-							</td>
-							<td>
-								<p><b><i style="font-size:16px;text-align:center;" class="material-icons">comments</i></b>
-									<p style="font-size:13px;">50</p></p>
-							</td>
-							<td>
-								<p><b><i style="font-size:16px;text-align:center;" class="material-icons">star</i></b>
-									<p style="font-size:13px;">6/10</p></p>
-							</td>
-						</tr>
-					</table>
-				</div>
-				<div class="col-xs-3">
-					<img class="img-responsive" src="{% static "images/pic2.jpg" %}?{% cache_bust %}" alt="event logso">
-					<p class="caption">comedy knights</p>
-				</div>
-			</div>
-		</a>
+		{%endfor%}
 	</div>
 </div>
 <div class="container panel panel-default">
@@ -205,7 +156,8 @@
 		<h3 class="panel-title"> Your Tickets</h3>
 	</div>
 	<div class="row panel-body">
-		<a href="/ticket" class="col-md-6">
+		{%for ticket in my_tickets%}
+		<a href="/ticket/{{ticket.pin}}" class="col-md-6">
 			<div class="row border_up_down">
 				<div class="col-xs-3">
 					<div class="date-main">
@@ -224,12 +176,12 @@
 					 </div>
 				</div>
 				<div class="col-xs-6">
-					<p><b>Sent To:</b></p>
-					<p><b>Code:</b></p>
+					<p><b>Sent To:</b>{{ticket.full_name}}</p>
+					<p><b>Code:</b>{{ticket.pin}}</p>
 					<p><b>Event:</b></p>
 					<p><b>Venue:</b></p>
 					<p><b>Sits:</b></p>
-					<p><b>date:</b></p>
+					<p><b>date:</b>{{ticket.date}}</p>
 				</div>
 				<div class="col-xs-3">
 					<img class="img-responsive" src="{% static "images/pic2.jpg" %}?{% cache_bust %}" alt="event logo">
@@ -237,70 +189,7 @@
 				</div>
 			</div>
 		</a>
-	<a href="/ticket" class="col-md-6">
-			<div class="row border_up_down">
-				<div class="col-xs-3">
-					<div class="date-main">
-						<div class="time">
-							<span class="date">
-							<span class="word2">Jan</span> 
-							<span class="word1">14</span> 
-							<span class="word2">2017</span>
-							</span>
-						</div>					
-						<div class="line_space"></div>	 
-						<div class="comments">
-						<span><span class="word1">0</span>
-						<span class="word3">days left</span></span>
-						</div>
-					 </div>
-				</div>
-				<div class="col-xs-6">
-					<p><b>Sent To:</b></p>
-					<p><b>Code:</b></p>
-					<p><b>Event:</b></p>
-					<p><b>Venue:</b></p>
-					<p><b>Sits:</b></p>
-					<p><b>date:</b></p>
-				</div>
-				<div class="col-xs-3">
-					<img class="img-responsive" src="{% static "images/pic2.jpg" %}?{% cache_bust %}" alt="event logso">
-					<p class="caption">comedy knights</p>
-				</div>
-			</div>
-		</a>
-		<a href="/ticket" class="col-md-6">
-			<div class="row border_up_down">
-				<div class="col-xs-3">
-					<div class="date-main">
-						<div class="time">
-							<span class="date">
-							<span class="word2">Jan</span> 
-							<span class="word1">14</span> 
-							<span class="word2">2017</span>
-							</span>
-						</div>					
-						<div class="line_space"></div>	 
-						<div class="comments">
-						<span><span class="word1">0</span>
-						<span class="word3">days left</span></span>
-						</div>
-					 </div>
-				</div>
-				<div class="col-xs-6">
-					<p><b>Sent To:</b></p>
-					<p><b>Code:</b></p>
-					<p><b>Event:</b></p>
-					<p><b>Venue:</b></p>
-					<p><b>Sits:</b></p>
-					<p><b>date:</b></p>
-				</div>
-				<div class="col-xs-3">
-					<img class="img-responsive" src="{% static "images/pic2.jpg" %}?{% cache_bust %}" alt="event logo">
-					<p class="caption">comedy knights</p>
-				</div>
-			</div>
-		</a>
+		{%endfor%}
 	</div>
 </div>
 

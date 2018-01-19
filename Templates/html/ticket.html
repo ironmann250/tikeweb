@@ -18,22 +18,22 @@
 				</div>
 			<div class="col-sm-6">
 			<div id="name">
-				<p><b>Name:</b> some name</p>
+				<p><b>Name:</b> {{event.title}}</p>
 			</div>
 			<div id="location">
-				<p><b>Location:</b> some location</p>
+				<p><b>Location:</b> {{event.venue.location}}</p>
 			</div>
 			<div id="num_tickets">
-				<p><b>Available Tickets:</b> 42</p>
+				<p><b>Available Tickets:</b> {{tickets_avail}}</p>
 			</div>
 			<div id="description">
-				<p><b>Description: </b>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</p>
+				<p><b>Description: </b>{{event.description}}</p>
 			</div>
 			<div id="category">
-				<p><b>Category: </b> <a href="#">Comedy</a></p>
+				<p><b>Category: </b> <a href="#">{{event.category.category_title}}</a></p>
 			</div>
 			<div id="due_date">
-				<p><b>Due Date:</b> 3/10/2017</p>
+				<p><b>Due Date:</b> {{event.date}}</p>
 			</div>
 			<div id="fav_share">
 					<table class="table">
@@ -41,7 +41,7 @@
 						<tr>
 							<td>
 								<p><b><i style="font-size:30px;text-align:center;" class="material-icons">favorite_border</i></b>
-									<p style="font-size:20px;">500</p></p>
+									<p style="font-size:20px;">{{event.likes}}</p></p>
 							</td>
 							<td>
 								<p><b><i style="font-size:30px;text-align:center;" class="material-icons">people</i></b>
@@ -53,7 +53,7 @@
 							</td>
 							<td>
 								<p><b><i style="font-size:30px;text-align:center;" class="material-icons">star</i></b>
-									<p style="font-size:20px;">6/10</p></p>
+									<p style="font-size:20px;">{{event.stars}}/10</p></p>
 							</td>
 						</tr>
 					</table>
@@ -62,19 +62,20 @@
 		</div>
 		</div>
 		<div class="col-md-5">
-			<p><b>Issued To:</b> Munyakabera Jean Claude</p>
-			<p><b>Sent To:</b> +250788304050</p>
-			<p><b>Used:</b> 1 of 10 tickets used</p>
+			<p><b>Issued To:</b> {{ticket.full_name}}</p>
+			<p><b>Sent To:</b> +{{ticket.phone_number}}</p>
+			<p><b>Used:</b> {{tickets_sameName_used}} of {{tickets_sameName}} tickets used</p>
 			<p><b>Sits:</b> Normal Sits</p>
-			<p><b>Amount:</b> 10 tickets</p>
+			<p><b>Amount:</b> {{tickets_sameName}} tickets</p>
 			<p><b>Price:</b> 50000 RWF</p>
-			<p><b>Bought On:</b> 3/10/2017</p>
+			<p><b>Bought On:</b> {{ticket.date}}</p>
 			<div id="sponsors">
 				<table class="table">
 					<p><b>ticket codes: </b></p>
 						<div class="row">
 							<div class="col-md-5 col-xs-6 border_up_down">
-								<a href="{% static "images/qrcode.png" %}?{% cache_bust %}" target="_blank_" style="text-align:center;">Qr code(click to enlarge)</p><p class="centered"><img class="img-responsive" src="{% static "images/qrcode.png" %}?{% cache_bust %}" alt="event logo"></a>
+								<a href="/get_qrcode/{{qr_code_info}}" target="_blank_" style="text-align:center;">Qr code(click to enlarge)</p><p class="centered"><img class="img-responsive" src="/get_qrcode/{{qr_code_info}}" alt="event logo"></a>
+									
 							</div>
 							
 							<div class="col-md-6 col-md-offset-1 col-xs-6 border_up_down" >

@@ -32,16 +32,16 @@
 				</div>
 			<div class="col-sm-6">
 			<div id="name">
-				<p><b>Name:</b> some name</p>
+				<p><b>Name:</b>{{event.title}}</p>
 			</div>
 			<div id="location">
-				<p><b>Location:</b> some location</p>
+				<p><b>Location:</b>{{event.venue.location}}</p>
 			</div>
 			<div id="num_tickets">
-				<p><b>Available Tickets:</b> 42</p>
+				<p><b>Available Tickets:</b>{{event.tickets_no}}</p>
 			</div>
 			<div id="description">
-				<p><b>Description: </b>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</p>
+				<p><b>Description: </b>{{event.description}}</p>
 			</div>
 			<div id="stats">
 				<table class="table">
@@ -49,11 +49,11 @@
 						<tr>
 							<td>
 								<p><b><i style="font-size:30px;text-align:center;" class="material-icons">favorite_border</i></b>
-									<p style="font-size:20px;">500</p></p>
+									<p style="font-size:20px;">{{event.likes}}</p></p>
 							</td>
 							<td>
 								<p><b><i style="font-size:30px;text-align:center;" class="material-icons">people</i></b>
-									<p style="font-size:20px;">5000</p></p>
+									<p style="font-size:20px;">{{tickets_sold}}</p></p>
 							</td>
 							<td>
 								<p><b><i style="font-size:30px;text-align:center;" class="material-icons">comments</i></b>
@@ -61,7 +61,7 @@
 							</td>
 							<td>
 								<p><b><i style="font-size:30px;text-align:center;" class="material-icons">star</i></b>
-									<p style="font-size:20px;">6/10</p></p>
+									<p style="font-size:20px;">{{event.stars}}/10</p></p>
 							</td>
 						</tr>
 					</table>
@@ -71,7 +71,7 @@
 		</div>
 		<div class="col-md-5">
 			<div id="category">
-				<p><b>Category: </b> <a href="#">Comedy</a></p>
+				<p><b>Category: </b> <a href="#">{{event.category.category_title}}</a></p>
 			</div>
 			<div id="sponsors">
 				<table class="table">
@@ -93,7 +93,7 @@
 				</table>
 			</div>
 			<div id="due_date">
-				<p><b>Due Date:</b> 3/10/2017</p>
+				<p><b>Due Date:</b> {{event.date}}</p>
 			</div>
 
 			<div id="fav_share">
@@ -113,7 +113,7 @@
 					</table>
 			</div>
 			<div id="buy">
-				<form action="/view_ticket">
+				<form action="/view_ticket/{{event.id}}">
 					
 					<table>
 						<tr>
@@ -122,9 +122,9 @@
 						</td>
 						<td>
 							<select class="pin"><!-- maybe dropdown-->
-							<option value=1>Vip: 50000 RWF</option>
-							<option value=1>Second: 30000 RWF</option>
-							<option value=1>Normal: 10000 RWF</option>
+							{% for ticket_type in ticket_types %}
+							<option value={{ticket_type.id}}>{{ticket_type.tike_type}}: {{ticket_type.amount}}</option>
+							{%endfor%}
 							</select> 
 						</td>
 							</tr>
@@ -142,7 +142,7 @@
 						<img class="img-responsive" src="{% static "images/19510366_1778932595457043_7527699437986703772_n.jpg" %}?{% cache_bust %}" alt="company logo">
 					</div>
 					<div class="col-md-9">
-						<p class="title">COM FACTORY</p>
+						<p class="title">{{organizer.full_name}}</p>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</p>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</p>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</p>
@@ -154,7 +154,7 @@
 						<img class="img-responsive" src="{% static "images/17201445_1747704538579128_3008104441482311053_n.jpg" %}?{% cache_bust %}" alt="venue logo">
 					</div>
 					<div class="col-md-9">
-						<p class="title">SERENA HOTEL</p>
+						<p class="title">{{event.venue.name}}</p>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</p>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</p>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati beatae quam voluptatibus deleniti ipsa consequatur!</p>
@@ -163,33 +163,17 @@
 			</div>
 			<div id="similar_events" class="col-md-5 col-xs-12">
 				<div class="title2"><p> Similar Events: </p></div>
-				<a href="#" class="row" >
+				{% for similar_event in similar_events %}
+				<a href="/view_event/{{similar_event.id}}" class="row" >
 					<div class="col-md-3 col-xs-6">
 						<img class="img-responsive" src="{% static "images/19510366_1778932595457043_7527699437986703772_n.jpg" %}?{% cache_bust %}" alt="event logo">
 					</div>
 					<div class="col-md-9 col-xs-6">
-						<p class="title1">COM FACTORY</p>
-						<p>Lorem ipsum dolor sit amet</p>
+						<p class="title1">{{similar_event.title}}</p>
+						<p>at {{similar_event.venue.name}} on {{similar_event.date}}</p>
 					</div>
 				</a>
-				<a href="#" class="row" >
-					<div class="col-md-3 col-xs-6">
-						<img class="img-responsive" src="{% static "images/19510366_1778932595457043_7527699437986703772_n.jpg" %}?{% cache_bust %}" alt="event logo">
-					</div>
-					<div class="col-md-9 col-xs-6">
-						<p class="title1">COM FACTORY</p>
-						<p>Lorem ipsum dolor sit amet</p>
-					</div>
-				</a>
-				<a href="#" class="row" >
-					<div class="col-md-3 col-xs-6">
-						<img class="img-responsive" src="{% static "images/19510366_1778932595457043_7527699437986703772_n.jpg" %}?{% cache_bust %}" alt="event logo">
-					</div>
-					<div class="col-md-9 col-xs-6">
-						<p class="title1">COM FACTORY</p>
-						<p>Lorem ipsum dolor sit amet</p>
-					</div>
-				</a>
+				{%endfor%}
 			</div>
 		</div>
 	</div> 

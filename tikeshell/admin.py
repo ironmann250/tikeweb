@@ -4,9 +4,15 @@ from django.contrib import admin
 from django.contrib import admin
 
 # Register your models here.
-from .models import profile,Show,tickettype,comment,showtype
-admin.site.register(profile)
-admin.site.register(Show)
+from .models import *
+admin.site.register(Show,ShowAdmin)
 admin.site.register(tickettype)
 admin.site.register(comment)
-admin.site.register(showtype)
+admin.site.register(Keyword)
+admin.site.register(Review)
+admin.site.register(Picture)
+admin.site.register(Account, AccountAdmin)
+admin.site.register(SellerAccount)
+admin.site.register(Category)
+admin.site.register(Venue)
+admin.site.register(Ticket,TicketAdmin)
