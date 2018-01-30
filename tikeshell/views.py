@@ -79,18 +79,18 @@ def render_qrcode(request,text): #this is considered a helper function not reall
 def render_hallmap(event):
     color_keys={}
     None
-# Create your views here.
-
+# Create your views here vyhvkfghvmvm
 def home(request):
     return render(request,'html/index.html',{})
-def event(request):
+def event(request): 
     return render(request,'html/event.html',{})
 def category(request,id):
     #get events in that category
     #order by likes or such things
     return render(request,'html/category.html',{})
 
-def search(request,q):
+def search(request):
+    q=request.GET['q']
     event_query=Q(Q(title__contains=q)|Q(description__contains=q))
     org_query=Q(Q(full_name__contains=q)|Q(introduction__contains=q))
     for word in q.split(' '):
@@ -99,7 +99,7 @@ def search(request,q):
     event_results=Show.objects.filter(event_query)#maybe put tags and reviews too
     organizers_results=SellerAccount.objects.filter(org_query)
     #mix queuries and sort them 
-    print event_results,'\n',organizers_results
+    print q,'\n',event_results,'\n',organizers_results
     return render(request,'html/search.html',locals())
 
 def createacc(request):

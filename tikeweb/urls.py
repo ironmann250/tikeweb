@@ -32,7 +32,7 @@ urlpatterns = [
     url(r'^requestbuy/',tikeshell_views.requestbuy),
     url(r'^createacc/',tikeshell_views.createacc),
     url(r'^sitemap/',tikeshell_views.sitemap),
-    url(r'^search/(?P<q>.*)',tikeshell_views.search),
+    url(r'^search/',tikeshell_views.search),
     url(r'^view_event/(?P<event_id>\d+)',tikeshell_views.view_event),
     url(r'^view_ticket/(?P<event_id>\d+)',tikeshell_views.view_ticket),
     url(r'^dashboard/(?P<user>\d+)',tikeshell_views.dashboard),

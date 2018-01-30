@@ -64,10 +64,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 	    <div class="col-xs-4">
-	        <div class="search">	  
-				<input type="text" name="s" class="textbox" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+	        <div class="search">
+	        <form action="/search" method="get">>	  
+				<input type="text" name="q" class="textbox" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
 				<input type="submit" value="Subscribe" id="submit" name="submit">
 				<div id="response"> </div>
+			</form>
 		     </div>
 	         <div class="clearfix"></div>
        </div>
