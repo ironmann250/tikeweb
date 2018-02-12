@@ -3,13 +3,12 @@ from tikeshell.models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Q
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from pprint import pprint as pp
-import time
+import time,json
 from StringIO import StringIO
 from tikeshell.utils import qrcodeGenerator
 #utility functions
-SHARED_VALS={'qr_code_info':'place_holder'}#not needed
 def sort(_list):
     _list.sort()
     return(_list)
@@ -154,6 +153,23 @@ def ticket(request,ticket_pin):
     tickets_sameName_used=Ticket.objects.filter(full_name=ticket.full_name,used=True).count()
     qr_code_info='name: %s event: %s pin: %s' % (ticket.full_name,event.title,ticket.pin) #put some kind of encryption here
     return render(request,'html/ticket.html',locals())
+def api_update_shows(request):#put a field of a password
+    '''
+    add info in db/shows, checks first if info is already in
+    returns item.id if update and 0 if not
+    '''
+    '''
+    TODO: make this functional
+    i have skipped this because updating the db from onsite's data
+    requires handling many uncertainities will work on this on v2
+    '''
+    fields={'id':'','title':'','category':'','desc':'','image':'','date':'','venue_info':'','num':'','tickettypes_info':'','organizer_info':''}
+    for key in request.GET.keys():
+        if key in fields.keys() and request.GET[key] not in ['']:
+            fields[key]=request.GET[key]
+    return JsonResponse({'info':'TODO'})
+
+
 def sitemap(request):
 	return render(request,'html/sitemap.html')
 def music(request):
