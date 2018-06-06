@@ -2096,7 +2096,7 @@ a.b-home:hover{
 	padding-bottom: 0.2em;
 	display: block;
 }
-.login-right input[type="text"] {
+.login-right input[type="text"],input[type="password"] {
 	border: 1px solid #DDDBDB;
 	outline-color:#fb4d01;
 	width: 96%;
@@ -2155,7 +2155,7 @@ p.cart {
 	padding-bottom: 0.2em;
 	display: block;
 }
-.register-top-grid input[type="text"], .register-bottom-grid input[type="text"] {
+.register-top-grid input, .register-bottom-grid input {
 	border: 1px solid #EEE;
 	outline-color:#FF5B36;
 	width: 96%;
@@ -2243,7 +2243,7 @@ p.cart {
 	padding-bottom:2.1em;
 
 }
-.register-but form input[type="submit"] {
+.register-but input[type="submit"] {
 	background:#df1f26;
 	color: #FFF;
 	font-size: 0.8em;

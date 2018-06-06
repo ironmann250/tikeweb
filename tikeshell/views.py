@@ -3,9 +3,10 @@ from tikeshell.models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Q
-from django.http import HttpResponse,JsonResponse
+from django.http import HttpResponse,JsonResponse,HttpResponseRedirect
 from pprint import pprint as pp
-import time,json
+import time,json,string,random
+from django.contrib.auth import authenticate,login
 from StringIO import StringIO
 from tikeshell.utils import qrcodeGenerator
 #utility functions
@@ -23,6 +24,42 @@ def save_to_string(img):
     obj.seek(0)
     return obj.read()
 
+def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
+    """
+    generate a 6 character pi that is unique in db/ticket
+    """
+    pin=''.join(random.choice(chars) for _ in range(size))
+    if Ticket.objects.filter(pin=pin).count() !=0:
+        id_generator()
+    else:
+        return pin
+
+def randomize_users(init,size=6, chars=string.ascii_uppercase + string.digits):
+    id_=''.join(random.choice(chars) for _ in range(size))
+    if User.objects.filter(username=init+id_).count() !=0:
+        randomize_users(init)
+    else:
+        return init+id_
+def loginpg(request):
+    print request.POST.keys()
+    if 'email' not in request.POST.keys():
+        return render(request,'html/login.html',locals())
+    email=request.POST['email']
+    pwd=request.POST['password']
+    if True:
+        uname=Account.objects.get(email=email).user.username
+        user=authenticate(request,username=uname,password=pwd)
+        if user:
+            login(request,user)
+            return HttpResponseRedirect("/dashboard/"+str(user.id))
+        else:
+            err_msg='incorrect password'
+            return render(request,'html/login.html',locals())
+    if False:# Exception as x:
+        print x
+        err_msg='incorrect login info'+str(x)
+        return render(request,'html/login.html',locals())
+    print user
 def get_similar_events(event,choices=3):
     '''
     get event that have at least one tag in common
@@ -101,9 +138,36 @@ def search(request):
     print q,'\n',event_results,'\n',organizers_results
     return render(request,'html/search.html',locals())
 
-def createacc(request):
-
-	return render(request,'html/createacc.html')
+def subscribe(request):
+    #error checking/validation
+    print request.POST.keys()
+    if 'fname' in request.POST.keys():
+        fname=request.POST['fname']
+        lname=request.POST['lname']
+        email=request.POST['email']
+        phone=request.POST['phone']
+        pwd=request.POST['pwd']
+        for tag in ['fname','lname','email','phone','pwd','repeater']:
+            if tag not in request.POST.keys():
+                err_msg="Fill all fields!"
+                return render(request,'html/createacc.html',locals())
+        if Account.objects.filter(email=email).count() !=0:
+            err_msg='Email already Registered'
+            return render(request,'html/createacc.html',locals())
+        if Account.objects.filter(phone_number=phone).count() !=0:
+            err_msg='Phone number already Registered'
+            return render(request,'html/createacc.html',locals())
+        if request.POST['pwd']!=request.POST['repeater']:
+            err_msg='Passwords do not match'
+            return render(request,'html/createacc.html',locals())
+        user = User.objects.create_user(username=randomize_users(fname+lname),
+            email=email,
+            password=pwd)
+        newaccount=Account.objects.create(user=user,full_name=fname+' '+lname,phone_number=phone,email=email)
+        newaccount.save()
+        return HttpResponseRedirect("/dashboard/"+str(user.id))
+    else:
+        return render(request,'html/createacc.html')
 def view_event(request,event_id):
     event=Show.objects.get(id=event_id)
     organizer=SellerAccount.objects.get(hosted_shows=event)
@@ -112,27 +176,62 @@ def view_event(request,event_id):
     #new default should be 6 event as in view_ticket
     similar_events=get_similar_events(event,3)
     return render(request,'html/view_event.html',locals())
-#@login_required 
+@login_required 
 def cart(request): #cart at dashboard
     return render(request,'html/cart.html') 
 def support(request):
     return render(request,'html/support.html')
 #@login_required 
+@login_required 
 def requestbuy(request):
     #output tickets not yet payed for json
     #get an input of tickets choose
     #for all of those tickets apply buy_ticket()
 
     #buy_ticket() will make a new entry and send a msg
-    return render(request,'html/checkout.html')
-#@login_required
+    #__^ in version 2 ,multiple ticket per cart
+    #get user data
+    #request.user....
+    ticket_type=request.POST['types']
+    amount=request.POST['num_tickets']
+    event_id=request.POST['transaction_id']
+    price=tickettype.objects.get(id=ticket_type).amount
+    type_=tickettype.objects.get(id=ticket_type).tike_type
+    event=Show.objects.get(id=event_id)
+    tot_price=float(price)*int(amount)
+    last_price=(tot_price*11)/10 #tot_price+10%
+    pin_=id_generator()
+    print ticket_type,amount,event_id
+    newticket= Ticket.objects.create(event_id=event_id,pin=pin_,full_name='unknown',tickettype_id=ticket_type,phone_number='250',user_id=-1)
+    newticket.save()
+    return render(request,'html/checkout.html',locals())
+
+def pytsys(request):
+    redirect_url=request.GET['redirect-url']
+    return render(request,'html/pytsys.html',locals())
+
+def validate(request):
+    pin_=request.GET['pin']
+    ticket=Ticket.objects.get(pin=pin_)
+    ticket.payed=True
+    ticket.save()
+    #add sms stuff
+    if ticket.user_id>0:
+         return HttpResponseRedirect("/dashboard/"+str(ticket.user_id))
+    else:
+         return HttpResponseRedirect("/")
+
+@login_required
 def dashboard(request,user):
     #derive it from django.auth
-    basket=Ticket.objects.filter(user_id=user,payed=False)
-    my_tickets=Ticket.objects.filter(user_id=user,payed=True)
+    if request.user.is_authenticated():
+        user = request.user
+    basket=Ticket.objects.filter(user_id=user.id,payed=False)
+    my_tickets=Ticket.objects.filter(user_id=user.id,payed=True)
     #similar_events=get_similar_events(event,6) #PUBLICITY_EVENTS
     return render(request,'html/dashboard.html',locals())
 
+@login_required 
 def view_ticket(request,event_id):
     event=Show.objects.get(id=event_id)
     ticket_types=event.tickettypes.iterator()
@@ -169,6 +268,20 @@ def api_update_shows(request):#put a field of a password
             fields[key]=request.GET[key]
     return JsonResponse({'info':'TODO'})
 
+def pin_lookup(request):
+    fields={'event':'','full_name':'','phone_number':''
+    ,'tickettype':'','used':'','date':'','info':'0'}
+    try:
+        ticket=Ticket.objects.get(request.GET[pin].upper())
+        vnt_nm=Show.objects.get(ticket.event_id).title
+        tickettype_=tickettype.objects.get(ticket.tickettype_id).tike_type
+        fields={'event':vnt_nm,'full_name':ticket.full_name,
+        'phone_number':ticket.phone_number,'tickettype':tickettype_,
+        'used':ticket.used,'date':ticket.date,'info':'1'}
+        return JsonResponse(json.dumps(fields))
+    except Exception as e:
+        print e
+        return JsonResponse(json.dumps(fields)) 
 
 def sitemap(request):
 	return render(request,'html/sitemap.html')

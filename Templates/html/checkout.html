@@ -11,7 +11,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <div class="container">
 	<div class="check">	 
 		<div class="col-md-9 cart-items">
-			 <h1>My Shopping Bag (2)</h1>
+			 <h1>My Shopping Bag</h1>
 				<script>$(document).ready(function(c) {
 					$('.close1').on('click', function(c){
 						$('.cart-header').fadeOut('slow', function(c){
@@ -21,20 +21,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					});
 			   </script>
 			 <div class="cart-header">
-				 <div class="close1"> </div>
+				 <!--<div class="close1"> </div>-->
 				 <div class="cart-sec simpleCart_shelfItem">
 						<div class="cart-item cyc">
 							 <img src="{% static "images/pic1.jpg" %}?{% cache_bust %}" class="img-responsive" alt=""/>
 						</div>
 					   <div class="cart-item-info">
-						<h3><a href="#">Mountain Hopper(XS R034)</a><span>Model No: 3578</span></h3>
+						<h3><a href="#">{{event}}</a><span>Type: {{type_}}</span></h3>
 						<ul class="qty">
-							<li><p>Size : 5</p></li>
-							<li><p>Qty : 1</p></li>
+							<li><p>Price  : {{price}}</p></li>
+							<li><p>Amount : {{amount}}</p></li>
 						</ul>
 						<div class="delivery">
-							 <p>Service Charges : Rs.100.00</p>
-							 <span>Delivered in 2-3 bussiness days</span>
+							 <p>Total Charges : {{tot_price}}</p>
+							 <span>Delivered in 2-3 business days</span>
 							 <div class="clearfix"></div>
 				        </div>	
 					   </div>
@@ -42,7 +42,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 											
 				  </div>
 			 </div>
-			 <script>$(document).ready(function(c) {
+			 <script>
+			 	//not used in this version
+			 	$(document).ready(function(c) {
 					$('.close2').on('click', function(c){
 							$('.cart-header2').fadeOut('slow', function(c){
 						$('.cart-header2').remove();
@@ -50,50 +52,30 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					});	  
 					});
 			 </script>
-			 <div class="cart-header2">
-				 <div class="close2"> </div>
-				  <div class="cart-sec simpleCart_shelfItem">
-						<div class="cart-item cyc">
-							 <img src="{% static "images/pic2.jpg" %}?{% cache_bust %}" class="img-responsive" alt=""/>
-						</div>
-					   <div class="cart-item-info">
-						<h3><a href="#">Mountain Hopper(XS R034)</a><span>Model No: 3578</span></h3>
-						<ul class="qty">
-							<li><p>Size : 5</p></li>
-							<li><p>Qty : 1</p></li>
-						</ul>
-							 <div class="delivery">
-							 <p>Service Charges : Rs.100.00</p>
-							 <span>Delivered in 2-3 bussiness days</span>
-							 <div class="clearfix"></div>
-				        </div>	
-					   </div>
-					   <div class="clearfix"></div>
-											
-				  </div>
-			  </div>		
+			 		
 		 </div>
 		 <div class="col-md-3 cart-total">
 			 <a class="continue" href="/dashboard/1">Continue to basket</a>
 			 <div class="price-details">
 				 <h3>Price Details</h3>
 				 <span>Total</span>
-				 <span class="total1">6200.00</span>
+				 <span class="total1">{{tot_price}}
+				 </span>
 				 <span>Discount</span>
 				 <span class="total1">---</span>
-				 <span>Delivery Charges</span>
-				 <span class="total1">150.00</span>
+				 <span>Service Charges</span>
+				 <span class="total1">10.00%</span>
 				 <div class="clearfix"></div>				 
 			 </div>	
 			 <ul class="total_price">
 			   <li class="last_price"> <h4>TOTAL</h4></li>	
-			   <li class="last_price"><span>6350.00</span></li>
+			   <li class="last_price"><span>{{last_price}}</span></li>
 			   <div class="clearfix"> </div>
 			 </ul>
 			
 			 
 			 <div class="clearfix"></div>
-			 <a class="order" href="#">Place Order</a>
+			 <a class="order" href="/pytsys?redirect-url={{request.get_host}}/validate?pin={{pin_}}">Place Order</a>
 			 <div class="total-item">
 				 <h3>OPTIONS</h3>
 				 <h4>COUPONS</h4>

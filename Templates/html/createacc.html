@@ -12,21 +12,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <div class="single_top">
 	 <div class="container"> 
 	     <div class="register">
-		  	  <form> 
+		  	  <form method="POST"> 
                    {% csrf_token %}
 				 <div class="register-top-grid">
+				 	<center><p style="background:orange ">{{err_msg}}</p></center>
 					<h3>PERSONAL INFORMATION</h3>
 					 <div>
 						<span>First Name<label>*</label></span>
-						<input type="text"> 
+						<input value='{{fname}}' name='fname' type="text" required> 
 					 </div>
 					 <div>
 						<span>Last Name<label>*</label></span>
-						<input type="text"> 
+						<input value='{{lname}}' name='lname' type="text" required> 
 					 </div>
 					 <div>
 						 <span>Email Address<label>*</label></span>
-						 <input type="text"> 
+						 <input value='{{email}}' name='email' type="text" required> 
+					 </div>
+					 <div>
+						 <span>Phone Number(+250)<label>*</label></span>
+						 <input value='{{phone}}' name='phone' type="number" required> 
 					 </div>
 					 <div class="clearfix"> </div>
 					   <a class="news-letter" href="#">
@@ -37,18 +42,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						    <h3>LOGIN INFORMATION</h3>
 							 <div>
 								<span>Password<label>*</label></span>
-								<input type="text">
+								<input name='pwd' type="password" required>
 							 </div>
 							 <div>
 								<span>Confirm Password<label>*</label></span>
-								<input type="text">
+								<input name="repeater" type="password" id="repeater">
+								<p id="notice"><span class="glyphicon glyphicon-alert font" aria-hidden="true"></span><span class="font"> Match the field</span></p>
 							 </div>
 							 <div class="clearfix"> </div>
 					 </div>
-				</form>
 				<div class="clearfix"> </div>
 				<div class="register-but">
-				   <form>
 					   <input type="submit" value="submit">
 					   <div class="clearfix"> </div>
 				   </form>

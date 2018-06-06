@@ -135,7 +135,8 @@
 				</tr>
 			</table>
 		</div>
-		<form action="/requestbuy" class="col-md-5" style="text-align:center;">
+		<form action="/requestbuy/" method="post" class="col-md-5" style="text-align:center;">
+			{% csrf_token %}
 			<div class="border_up_down" style="text-align:left;">
 				<p class="" style="padding:2px;"> Category: <select name="types" class="pin types">
 					{% for ticket_type in ticket_types %}
@@ -146,6 +147,8 @@
 			
 				<p class="">`Amount  :  <input class="pin num_tickets"  type="number" name="num_tickets" value=1> of <span class="flat_block"> 500</span> <span style="font-size:1em;" class="material-icons">info</span>
 				</p>
+				<input type="hidden" name="transaction_id" value="{{event.id}}">
+
 			</div>
 			<div class="border_up_down">
 				<p class="">Delivery Way:
