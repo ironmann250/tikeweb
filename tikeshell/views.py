@@ -191,7 +191,9 @@ def requestbuy(request):
     #buy_ticket() will make a new entry and send a msg
     #__^ in version 2 ,multiple ticket per cart
     #get user data
-    #request.user....
+    #request.user...
+    user = request.user
+    account=Account.objects.get(user=user)
     ticket_type=request.POST['types']
     amount=request.POST['num_tickets']
     event_id=request.POST['transaction_id']
@@ -202,7 +204,7 @@ def requestbuy(request):
     last_price=(tot_price*11)/10 #tot_price+10%
     pin_=id_generator()
     print ticket_type,amount,event_id
-    newticket= Ticket.objects.create(event_id=event_id,pin=pin_,full_name='unknown',tickettype_id=ticket_type,phone_number='250',user_id=-1)
+    newticket= Ticket.objects.create(event_id=event_id,pin=pin_,full_name=account.full_name,tickettype_id=ticket_type,phone_number=account.phone_number,user_id=user.id)
     newticket.save()
     return render(request,'html/checkout.html',locals())
 
@@ -224,8 +226,7 @@ def validate(request):
 @login_required
 def dashboard(request,user):
     #derive it from django.auth
-    if request.user.is_authenticated():
-        user = request.user
+    user = request.user
     basket=Ticket.objects.filter(user_id=user.id,payed=False)
     my_tickets=Ticket.objects.filter(user_id=user.id,payed=True)
     #similar_events=get_similar_events(event,6) #PUBLICITY_EVENTS
